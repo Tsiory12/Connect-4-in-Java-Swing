@@ -1,0 +1,108 @@
+package mg.tsiory.puissance4;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+	public class Puissance4 extends JFrame{
+		private static final long serialVersionUID = 1L;
+
+		
+		public static JPanel princ = new JPanel(new BorderLayout());
+		public static JMenuBar BarreMenus = new JMenuBar();
+		public static JMenu Mode = new JMenu("Mode");
+		public static JRadioButtonMenuItem mode1 = new JRadioButtonMenuItem("P vs P"),
+								     	   mode2 = new JRadioButtonMenuItem("P vs IA"),
+								     	   mode3 = new JRadioButtonMenuItem("IA vs P"),
+								     	   mode4 = new JRadioButtonMenuItem("IA vs IA");
+		public static ButtonGroup group = new ButtonGroup();
+		public static JPanel plateau = new JPanel(new GridLayout(6,7));
+		public static JLabel[][]zone = new JLabel[6][7];
+		public static JButton nouveau = new JButton("New"); 
+		public static JButton bouton1 = new JButton("1"),
+							  bouton2 = new JButton("2"),
+							  bouton3 = new JButton("3"),
+							  bouton4 = new JButton("4"),
+							  bouton5 = new JButton("5"),
+							  bouton6 = new JButton("6"),
+							  bouton7 = new JButton("7");
+		public static JLabel tour = new JLabel("Tour de");
+		public static JLabel joueur = new JLabel();
+		public static int i = 0;
+		public static JLabel game = new JLabel("No-Game");
+		public static JLabel essaie = new JLabel("Try");
+		public static ImageIcon blanc = new ImageIcon("blanc.png");
+		public static ImageIcon bleu = new ImageIcon("bleu.png");
+		public static ImageIcon rouge = new ImageIcon("rouge.png");
+		public static int pion = 0;		
+		
+	public Puissance4(){
+		super("Puissance 4");
+		this.setSize(500,500);
+		this.setLocationRelativeTo(null);
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setResizable(false);
+		this.add(containprinc());
+		setJMenuBar(BarreMenus);
+		BarreMenus.add(Mode);
+		mode1.setSelected(true);
+		group.add(mode1); group.add(mode2); group.add(mode3); group.add(mode4);
+		Mode.add(mode1); Mode.add(mode2); Mode.add(mode3); Mode.add(mode4);
+	}
+	
+	public JPanel containprinc() {
+		princ.add(North(),BorderLayout.NORTH);
+		princ.add(Centre(), BorderLayout.CENTER);
+		princ.add(South(),BorderLayout.SOUTH);
+		return princ;
+	}
+	
+	public JPanel North() {
+		JPanel nord = new JPanel(new GridLayout(1,7));
+		
+		//Methodes.ActionBouton();
+		nord.add(bouton1);
+		nord.add(bouton2);
+		nord.add(bouton3);
+		nord.add(bouton4);
+		nord.add(bouton5);
+		nord.add(bouton6);
+		nord.add(bouton7);
+		
+		return nord;
+	}
+	
+	public static JPanel Centre(){
+		plateau.setBackground(Color.GRAY);
+		for(int x=0; x < 6; x++) {
+			for(int y=0; y < 7; y++) {	
+				zone[x][y] = new JLabel();
+				plateau.add(zone[x][y]);
+				zone[x][y].setIcon(blanc);
+			}	
+		}
+		return plateau;
+	}
+	
+	public JPanel South() {
+		JPanel sud = new JPanel(new GridLayout(1,2));
+		JPanel sudpane1 = new JPanel(new FlowLayout(FlowLayout.LEFT));
+		sud.add(tour);
+		sud.add(joueur);
+		sud.add(sudpane1);
+		
+		JPanel sudpane2 = new JPanel(new GridLayout(1,2));
+		
+		Methodes.Jeu();
+		sudpane2.add(game);
+		sudpane2.add(nouveau);
+		sud.add(sudpane2);
+		
+		return sud;
+	}
+	
+}
+
+
