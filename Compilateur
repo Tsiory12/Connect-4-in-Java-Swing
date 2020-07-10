@@ -1,0 +1,10 @@
+package mg.tsiory.puissance4;
+
+public class CompilePuissance4 {
+
+	public static void main(String[] args) {
+		Puissance4 plat = new Puissance4();
+		plat.setVisible(true);
+	}
+
+}
