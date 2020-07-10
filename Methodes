@@ -1,0 +1,329 @@
+package mg.tsiory.puissance4;
+
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.*;
+
+public class Methodes extends Puissance4 {
+  private static final long serialVersionUID = 1L;
+  
+  public static int[] ligne = {5,5,5,5,5,5,5};
+  public static int numBouton = 0;
+  public static int c;
+  
+  
+	public static void Jeu() {
+		nouveau.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				for(int x=0; x < 6; x++) {
+					for(int y=0; y < 7; y++) {
+						zone[x][y].setIcon(blanc);
+						setPion(0);
+					}	
+				}
+				for(int k=0; k<=6; k++) {
+					ligne[k] = 5;
+				}
+				game.setText("In-Game");
+				i = 0;
+				ModeJeu();
+			}
+			
+			});	
+		
+	}
+	
+	public static void ModeJeu() {
+		if(mode1.isSelected()) {
+						try{
+							ActionBouton();
+						}
+						catch(Exception e) {System.out.println("Erreur");}	
+						
+		}
+		if(mode2.isSelected()) {
+			System.out.println("Mode 2");	
+			JvM();
+		}
+		if(mode3.isSelected()) {
+			System.out.println("Mode 3");
+				MvJ();
+		}
+		if(mode4.isSelected()) {
+			System.out.println("Mode 4");
+				MvM();
+		}
+	}
+	
+/*-------------------------------------------------- Les Boutons : ------------------------------------------------------------*/
+	
+	public static void Un() {
+		if(zone[ligne[0]][0].getIcon() == blanc && ligne[0] >= 0) {
+			try{
+						if(i%2 == 0) {
+								zone[ligne[0]][0].setIcon(bleu);
+								ligne[0]--;
+						}
+						if(i%2 == 1) {
+								zone[ligne[0]][0].setIcon(rouge);
+								ligne[0]--;
+						}
+				setNum(0);
+				i++;
+			}
+			catch(Exception e) {System.out.println("Colonne pleine enfoiré");}
+		}
+	}
+	
+	public static void Deux() {
+		if(zone[ligne[1]][1].getIcon() == blanc && ligne[0] >= 0) {
+			if(i%2 == 0) {
+				zone[ligne[1]][1].setIcon(bleu);
+				ligne[1]--;
+			}
+			if(i%2 == 1) {
+				zone[ligne[1]][1].setIcon(rouge);
+				ligne[1]--;
+			}		
+			setNum(1);
+			i++;
+		}
+	}
+
+	public static void Trois() {
+		if(zone[ligne[2]][2].getIcon() == blanc && ligne[0] >= 0) {
+			if(i%2 == 0) {
+				zone[ligne[2]][2].setIcon(bleu);
+				ligne[2]--;
+			}
+			if(i%2 == 1) {
+				zone[ligne[2]][2].setIcon(rouge);
+				ligne[2]--;
+			}		
+			setNum(2);
+					i++;
+		}
+	}
+
+	public static void Quatre() {
+		if(zone[ligne[3]][3].getIcon() == blanc && ligne[0] >= 0) {
+			if(i%2 == 0) {
+				zone[ligne[3]][3].setIcon(bleu);
+				ligne[3]--;
+			}
+			if(i%2 == 1) {
+				zone[ligne[3]][3].setIcon(rouge);
+				ligne[3]--;
+			}		
+			setNum(3);
+			i++;
+		}
+	}
+
+	public static void Cinq() {
+		if(zone[ligne[4]][4].getIcon() == blanc && ligne[0] >= 0) {
+			if(i%2 == 0) {
+				zone[ligne[4]][4].setIcon(bleu);
+				ligne[4]--;
+			}
+			if(i%2 == 1) {
+				zone[ligne[4]][4].setIcon(rouge);
+				ligne[4]--;
+			}
+			setNum(4);
+			i++;
+		}
+	}
+
+	public static void Six() {
+		if(zone[ligne[5]][5].getIcon() == blanc && ligne[0] >= 0) {
+			if(i%2 == 0) {
+				zone[ligne[5]][5].setIcon(bleu);
+				ligne[5]--;
+			}
+			if(i%2 == 1) {
+				zone[ligne[5]][5].setIcon(rouge);
+				ligne[5]--;
+			}
+		}
+		setNum(5);
+		i++;
+	}
+
+	public static void Sept() {
+		if(zone[ligne[6]][6].getIcon() == blanc && ligne[0] >= 0) {
+			if(i%2 == 0) {
+				zone[ligne[6]][6].setIcon(bleu);
+				ligne[6]--;
+			}
+			if(i%2 == 1) {
+				zone[ligne[6]][6].setIcon(rouge);
+				ligne[6]--;
+			}
+		}
+		setNum(6);
+		i++;
+	}
+	
+	public static void IA() {
+		
+	}
+
+/*-------------------------------------------------Les modes de jeu : -----------------------------------------------------------*/
+	
+	public static void JvJ () {
+		for(i=0; i<=6*7; i++) {
+			zone[ligne[0]][0].setIcon(bleu);;
+			//Victoire();
+		}
+		
+	}
+	
+	private static void JvM() {
+		
+	}
+
+	private static void MvJ() {
+	
+	}
+
+	private static void MvM() {
+	
+	}
+
+/*------------------------------------------------- la Victoire : -----------------------------------------------------------*/
+
+	public static void Victoire() {
+		int x = ligne[getNum()];
+		int y = getNum();
+		int Victoire = 4;
+		int gagnant = 0;
+		int somme = 5;
+		System.out.println(getNum());
+		
+					//Alignement Horizontale : 
+				try {
+					/*if(zone[x][y].getIcon() == zone[x][y+1].getIcon() & zone[x][y+1].getIcon() == zone[x][y+2].getIcon() & zone[x][y+2].getIcon() == zone[x][y+3].getIcon()) {
+							somme = 4;}*/
+					if(/*zone[x][y].getIcon() == bleu & */zone[x][y].getIcon() == zone[x][y-1].getIcon() & zone[x][y-1].getIcon() == zone[x][y-2].getIcon() & zone[x][y-2].getIcon() == zone[x][y-3].getIcon()) {
+							somme = 4;}
+				}catch(ArrayIndexOutOfBoundsException e) {System.out.println("Erreur ici dans victoire");}
+		
+					//Alignement Verticale :
+			/*	try{
+					if(zone[x][y].getIcon() !=blanc & zone[x][y].getIcon() == zone[x+1][y].getIcon() & zone[x+1][y].getIcon() == zone[x+2][y].getIcon() & zone[x+2][y] == zone[x+3][y]){
+							somme = 4;}
+				}
+				catch(ArrayIndexOutOfBoundsException e) {System.out.println("Ici l'erreur");}*/
+		
+					//Alignement Diagonale Haut Gauche vers Bas Droite :
+		/*try {
+			if(zone[x][y].getIcon() !=blanc & zone[x][y].getIcon() == zone[x+1][y+1].getIcon() & zone[x+1][y+1].getIcon() == zone[x+2][y+2].getIcon() & zone[x+2][y+2].getIcon() == zone[x+3][y+3].getIcon()){
+				somme = 4;}
+		} catch(ArrayIndexOutOfBoundsException e) {System.out.println();}*/
+		
+					//Alignement Diagonale Haut Droite vers Bas Gauche :
+	/*	try {
+			if(zone[x][y].getIcon() !=blanc & zone[x][y].getIcon() == zone[x+1][y-1].getIcon() & zone[x+1][y-1].getIcon() == zone[x+2][y-2].getIcon() & zone[x+2][y-2].getIcon() == zone[x+3][y-3].getIcon()){
+				somme = 4;}
+		} catch(ArrayIndexOutOfBoundsException f) {System.out.println();}
+		*/
+		if(somme == 4) {
+			
+			if(i%2 == 0) {gagnant = 2;}
+			if(i%2 == 1) {gagnant = 1;}
+			System.out.println("Il y a une victoire");
+		}
+			if(gagnant == 1) {
+				System.out.println("Quatre pions bleus alignés, VICTOIRE DU JOUEUR 1 !!!!");
+			}
+			if(gagnant == 2) {
+				System.out.println("Quatre pions rouges alignés, VICTOIRE DU JOUEUR 2 !!!!");
+			}
+			
+			if(gagnant == 0) {
+				System.out.println("C'EST UN MATCH NUL !!");
+			}
+			System.out.println(somme);
+	}
+
+/*------------------------------------------------- Colonne pleine :------------------------------------------------------------*/
+	
+	private static void Pleine() {
+		if(ligne[c] == 0) {
+			
+		}
+		else{}
+	}
+	
+/*------------------------------------------------- Setter and getter : -----------------------------------------------------------*/
+	private static void setNum(int i) {
+		  numBouton = i;
+	 }
+	private static int getNum() {
+		 return numBouton ;
+	 }
+	
+	private static void setPion(int p) {
+		pion = i;
+	}
+	private static int getPion() {
+		return pion;
+	}
+	
+	//private st
+/*----------------------------------------------- Ecouteur : ----------------------------------------------------------------------*/
+	public static void ActionBouton() {
+			bouton1.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					Un();
+					Victoire();
+				}
+				});
+
+			bouton2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Deux();
+				Victoire();
+			}
+		});
+			
+		bouton3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Trois();
+				Victoire();
+			}
+		});
+		
+		bouton4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Quatre();
+				Victoire();
+			}
+		});
+		
+		bouton5.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Cinq();
+				Victoire();
+			}
+		});
+		
+		bouton6.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Six();
+				Victoire();
+			}
+		});
+		bouton7.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Sept();
+				Victoire();
+			}
+		});
+	}	
+}
+
+	
